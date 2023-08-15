@@ -1,0 +1,27 @@
+<div class="card" style="text-align: center;">
+  <p-menubar [model]="items" class="p-menubar" >
+    <ng-template pTemplate="start">
+      <img src="../../assets/samrt.jpeg" height="50" class="mr-3" />
+    </ng-template>
+  </p-menubar>
+</div>
+
+
+
+<div class="container-fluid p-5" *ngIf="currentUser" style="background: linear-gradient(to right, #fc00ff, #00dbde); text-align: center; box-shadow: 0px 0px 10px #888888; width: 1000px; margin: 150px auto 0;">
+  <h2 style="color: azure;">Bienvenue</h2>
+  <h2 style="color: azure;"> {{ currentUser.email }}!</h2>
+  <button class="btn btn-danger" (click)="deleteUser()"><i class="fa fa-trash" style="margin-right: 5px;"></i>Supprimer mon compte</button>
+</div>
+
+
+
+
+
+<footer class="sticky-footer" style="background: linear-gradient(to right, #000428, #004e92);margin-top: 130px;">
+  <div class="container my-auto">
+    <div class="text-center my-auto">
+      <span style="color: white;">© Votre site Web 2023</span>
+    </div>
+  </div>
+</footer>

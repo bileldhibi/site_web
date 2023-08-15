@@ -1,0 +1,11 @@
+.p-menubar {
+  background: linear-gradient(to right,  #3d29cf, #ee0979);
+    display: flex;
+    justify-content: center;
+  }
+  .p-menu {
+    display: flex;
+    justify-content: center;
+  }
+
+  

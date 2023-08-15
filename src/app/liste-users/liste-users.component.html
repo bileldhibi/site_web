@@ -1,0 +1,121 @@
+<div class="card" style="text-align: center;">
+  <p-menubar [model]="items" class="p-menubar" >
+    <ng-template pTemplate="start">
+      <img src="../../assets/samrt.jpeg" height="50" class="mr-3" />
+    </ng-template>
+  </p-menubar>
+</div>
+<button
+  type="button"
+  *ngIf="isAdminUser"
+  class="btn btn-primary ml-2 mb-3 mt-5"
+  (click)="toggleForm()"
+  style="background: linear-gradient(to right, #140fb5, #106886)"
+>
+  <i class="fas fa-user-plus"></i> Ajout d'un ouvrier
+</button>
+
+
+
+<table class="table table-striped" style="background: linear-gradient(to right, #b1c5e0, #004e92); color: #fff; ">
+  <thead>
+    <tr>
+      <th>Prénom</th>
+      <th>Nom</th>
+      <th>Email</th>
+      <th>Téléphone</th>
+      <th>CIN</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let user of users">
+      <td>
+        <span *ngIf="!user.editable">{{ user.prenom }}</span>
+        <input *ngIf="user.editable" type="text" [(ngModel)]="user.prenom" />
+      </td>
+      <td>
+        <span *ngIf="!user.editable">{{ user.nom }}</span>
+        <input *ngIf="user.editable" type="text" [(ngModel)]="user.nom" />
+      </td>
+      <td>{{ user.email }}</td>
+      <td>
+        <span *ngIf="!user.editable">{{ user.telephone }}</span>
+        <input *ngIf="user.editable" type="text" [(ngModel)]="user.telephone" />
+      </td>
+      <td>
+        <span *ngIf="!user.editable">{{ user.cin }}</span>
+        <input *ngIf="user.editable" type="text" [(ngModel)]="user.cin" />
+      </td>
+      <td>
+        <button *ngIf="!user.editable" class="btn btn-primary mr-3" (click)="user.editable = true" style="background: linear-gradient(to right, #3912b8, #a4bccf);"><i class="fas fa-edit"></i> Modifier</button>
+        <button *ngIf="user.editable" class="btn btn-success mr-3" (click)="updateUser(user)"  style="background: linear-gradient(to right, #0bb808, #9ac50d);"><i class="fas fa-save"></i> Enregistrer</button>
+        <button *ngIf="user.editable" class="btn btn-danger mr-3" (click)="cancelUpdate(user)"  style="background: linear-gradient(to right, #dae0e4, #ab138a);"><i class="fas fa-times"></i> Annuler</button>
+        <button class="btn btn-danger" (click)="deleteUser1(user.id)" style="background: linear-gradient(to right, #F44336, #FF5722);">
+          <i class="fa fa-trash"></i> Supprimer
+        </button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="container">
+  <div class="row justify-content-center" *ngIf="showForm">
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-header bg-primary text-white">
+          <h4 class="card-title"><i class="fas fa-user-plus"></i> Ajout d'un ouvrier</h4>
+        </div>
+        <div class="card-body" style="background: linear-gradient(to right, #000428, #004e92);">
+          <form (submit)="register1()">
+            <div class="form-group">
+              <label for="nom"><i class="fas fa-user"></i> Nom</label>
+              <input type="text" class="form-control" id="nom" [(ngModel)]="nom" name="nom" required>
+            </div>
+            <div class="form-group">
+              <label for="prenom"><i class="fas fa-user"></i> Prénom</label>
+              <input type="text" class="form-control" id="prenom" [(ngModel)]="prenom" name="prenom" required>
+            </div>
+            <div class="form-group">
+              <label for="email"><i class="fas fa-envelope"></i> Email</label>
+              <input type="email" class="form-control" id="email" [(ngModel)]="email" name="email" required>
+            </div>
+            <div class="form-group">
+              <label for="cin"><i class="fas fa-id-card"></i> CIN</label>
+              <input type="text" class="form-control" id="cin" [(ngModel)]="cin" name="cin" required>
+            </div>
+            <div class="form-group">
+              <label for="telephone"><i class="fas fa-phone"></i> Téléphone</label>
+              <input type="text" class="form-control" id="telephone" [(ngModel)]="telephone" name="telephone" required>
+            </div>
+            <button type="submit" class="btn btn-primary mr-3" style="background: linear-gradient(to right, #0fc15f, #ada00d);">
+              <i class="fas fa-plus-circle" style="margin-right: 5px;"></i> Ajouter
+            </button>
+            <button  class="btn btn-danger " (click)="cancel()" style="background: linear-gradient(to right, #9b0d0d, #ab138a);">
+              <i class="fas fa-times"></i> Annuler
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="container">
+  <h2>Liste des utilisateurs</h2>
+  <ul class="list-group">
+    <li class="list-group-item" *ngFor="let user of users1 | async" [ngClass]="{ 'bg-info': user.email === currentUserEmail }">
+      {{ user.email }}
+    </li>
+  </ul>
+</div>
+
+
+<footer class="sticky-footer" style="background: linear-gradient(to right, #000428, #004e92);margin-top: 13px;">
+  <div class="container my-auto">
+    <div class="text-center my-auto">
+      <span style="color: white;">© Votre site Web 2023</span>
+    </div>
+  </div>
+</footer>

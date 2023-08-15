@@ -1,0 +1,57 @@
+
+<div class="card" style="text-align: center;">
+  <p-menubar [model]="items" class="p-menubar" >
+    <ng-template pTemplate="start">
+      <img src="../../assets/samrt.jpeg" height="50" class="mr-3" />
+    </ng-template>
+  </p-menubar>
+</div>
+<div style="margin-top: 160px;">
+<h1 class="text-center my-5" style="color: #004e92;">Modifier les données de profil</h1>
+<table class="table text-center container p-3 shadow" style="background: linear-gradient(to right, #000428, #004e92);  margin-bottom: 50px;">
+
+  <thead>
+    <tr>
+      <th scope="col">Nom</th>
+      <th scope="col">Prénom</th>
+      <th scope="col">CIN</th>
+      <th scope="col">Téléphone</th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let user of users">
+      <td>
+        <span *ngIf="!user.editable">{{ user.nom }}</span>
+        <input *ngIf="user.editable" type="text" class="form-control" [(ngModel)]="user.nom">
+      </td>
+      <td>
+        <span *ngIf="!user.editable">{{ user.prenom }}</span>
+        <input *ngIf="user.editable" type="text" class="form-control" [(ngModel)]="user.prenom">
+      </td>
+      <td>
+        <span *ngIf="!user.editable">{{ user.cin }}</span>
+        <input *ngIf="user.editable" type="text" class="form-control" [(ngModel)]="user.cin">
+      </td>
+      <td>
+        <span *ngIf="!user.editable">{{ user.telephone }}</span>
+        <input *ngIf="user.editable" type="text" class="form-control" [(ngModel)]="user.telephone">
+      </td>
+      <td>
+        <button *ngIf="!user.editable" class="btn btn-primary" (click)="user.editable = true"><i class="fas fa-edit"></i> Modifier</button>
+        <button *ngIf="user.editable" class="btn btn-success" (click)="updateUser(user)"><i class="fas fa-save"></i> Enregistrer</button>
+        <button *ngIf="user.editable" class="btn btn-danger mt-3" (click)="cancelUpdate(user)"><i class="fas fa-times"></i> Annuler</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<footer class="sticky-footer" style="background: linear-gradient(to right, #000428, #004e92);margin-top: 230px;">
+  <div class="container my-auto">
+    <div class="text-center my-auto">
+      <span style="color: white;">© Votre site Web 2023</span>
+    </div>
+  </div>
+</footer>
+  
+  

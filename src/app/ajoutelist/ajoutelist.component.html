@@ -1,0 +1,121 @@
+<div class="card" style="text-align: center;">
+  <p-menubar [model]="items" class="p-menubar" >
+    <ng-template pTemplate="start">
+      <img src="../../assets/samrt.jpeg" height="50" class="mr-3" />
+    </ng-template>
+  </p-menubar>
+</div>
+
+<div class="container mt-3" >
+    <h1>Liste des machines</h1>
+    <table class="table" style="background: linear-gradient(to right, #000428, #004e92); color: white;">
+      <thead>
+        <tr>
+          <th scope="col">Numéro  de la machine</th>
+          <th scope="col">Nom de la machine</th>
+          <th scope="col">Description</th>
+          <th scope="col">Tension de facteur de puissance</th>
+          <th scope="col">Statut</th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let machine of machines$ | async">
+          <td>{{ machine.numero }}</td>
+          <td>{{ machine.nomMachine }}</td>
+          <td>{{ machine.description }}</td>
+          <td>{{ machine.Coefficient }}</td>
+          <td>{{ machine.status }}</td>
+          <td>
+            <button *ngIf="currentUserRole === 'admin'" class="btn btn-sm btn-danger float-right" (click)="deleteMachine(machine.key)">
+              <i class="fas fa-trash"></i> Supprimer
+            </button>
+            <button *ngIf="currentUserRole === 'admin'" class="btn btn-sm btn-primary float-right mr-2 mt-1" (click)="editMachine(machine)">
+              <i class="fas fa-edit"></i> Modifier
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    
+    
+    <button class="btn btn-primary "*ngIf="currentUserRole === 'admin'" (click)="showForm = !showForm" style=" background: linear-gradient(to bottom right, #05b643, #38179c);"><i class="fas fa-plus"></i> Ajouter une machine</button>
+
+    <div *ngIf="showForm" class="container  mt-3">
+      <form (ngSubmit)="addMachine()" style="background: linear-gradient(to bottom right, #1f0a91, #e8e5e5); padding: 10px;">
+        <div class="form-group">
+          <label for="numero" style="color: #e8e5e5;">Numéro  de la machine</label>
+          <input type="number" class="form-control" id="numero" name="numero" [(ngModel)]="newMachine.numero">
+        </div>
+        <div class="form-group">
+          <label for="nomMachine" style="color: #e8e5e5;">Nom de la machine</label>
+          <input type="text" class="form-control" id="nomMachine" name="nomMachine" [(ngModel)]="newMachine.nomMachine">
+        </div>
+        <div class="form-group">
+          <label for="description" style="color: #e8e5e5;">Description</label>
+          <textarea class="form-control" id="description" name="description" [(ngModel)]="newMachine.description"></textarea>
+        </div>
+        <div class="form-group">
+          <label for="Conversion" style="color: #e8e5e5;">Tension de facteur de puissance</label>
+          <input type="number" class="form-control" id="Conversion" name="Conversion" [(ngModel)]="newMachine.Coefficient">
+        </div>
+        <div class="form-group">
+          <label for="status" style="color: #e8e5e5;">Statut</label>
+          <select class="form-control" id="status" name="status" [(ngModel)]="newMachine.status">
+            <option value="En marche">En marche</option>
+            <option value="En panne">En panne</option>
+          </select>
+        </div>
+        <button type="submit" class="btn btn-primary"><i class="fas fa-plus"></i> Ajouter</button>
+        <button type="button" class="btn btn-secondary ml-2" (click)="showForm = false" style="background: linear-gradient(to bottom right, #a42532, #a10966);">
+          <i class="fas fa-times"></i> Annuler
+        </button>
+        
+      </form>
+    </div>
+
+    <div class="container mt-3" *ngIf="editedMachine.key">
+      <h1>Modifier une machine</h1>
+      <form (ngSubmit)="updateMachine()">
+        <div class="form-group">
+          <label for="numero">Numéro  de la machine</label>
+          <input type="number" class="form-control" id="numero" name="numero" [(ngModel)]="editedMachine.numero">
+        </div>
+        <div class="form-group">
+          <label for="nomMachine">Nom de la machine</label>
+          <input type="text" class="form-control" id="nomMachine" name="nomMachine" [(ngModel)]="editedMachine.nomMachine">
+        </div>
+        <div class="form-group">
+          <label for="description">Description</label>
+          <textarea class="form-control" id="description" name="description" [(ngModel)]="editedMachine.description"></textarea>
+        </div>
+        <div class="form-group">
+          <label for="Conversion">Tension de facteur de puissance</label>
+          <input type="number" class="form-control" id="Conversion" name="Conversion" [(ngModel)]="editedMachine.Coefficient">
+        </div>
+        <div class="form-group">
+          <label for="status">Statut</label>
+          <select class="form-control" id="status" name="status" [(ngModel)]="editedMachine.status">
+            <option value="En marche">En marche</option>
+            <option value="En panne">En panne</option>
+          </select>
+        </div>
+        <button type="submit" class="btn btn-primary" style="background: linear-gradient(45deg, #8E2DE2, #4A00E0); border: none;">
+          <i class="fa fa-edit"></i> Modifier
+        </button>
+        <button type="button" class="btn btn-secondary ml-2" style="background: linear-gradient(45deg, #FF6B6B, #FF0000); border: none;" (click)="cancelEdit()">
+          <i class="fa fa-times"></i> Annuler
+        </button>
+      </form>
+    </div>
+   </div>
+    
+
+
+    <footer class="sticky-footer" style="background: linear-gradient(to right, #000428, #004e92);margin-top: 170px;">
+      <div class="container my-auto">
+        <div class="text-center my-auto">
+          <span style="color: white;">© Votre site Web 2023</span>
+        </div>
+      </div>
+    </footer>  

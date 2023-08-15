@@ -1,0 +1,15 @@
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+    padding: 50px 0;
+  }
+  .p-menubar {
+    background: linear-gradient(to right, #000428, #3b89cd);
+    display: flex;
+    justify-content: center;
+  }
+  .p-menu {
+    display: flex;
+    justify-content: center;
+  }

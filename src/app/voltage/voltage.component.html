@@ -1,0 +1,48 @@
+<div class="card" style="text-align: center;">
+  <p-menubar [model]="items" class="p-menubar" >
+    <ng-template pTemplate="start">
+      <img src="../../assets/samrt.jpeg" height="50" class="mr-3" />
+    </ng-template>
+  </p-menubar>
+</div>
+
+<div class="container  py-5 shadow" style="margin-top: 150px; background-image: linear-gradient(to right, #3d29cf, #561197);">
+  <div class="row justify-content-center" >
+    <div class="col-md-6">
+      <h2 class="text-center text-light mb-4">Surveillance des Machines</h2>
+      <p class="text-center text-light mb-4">Nom de la machine : {{ nomMachineTextView }}</p>
+      <p class="text-center text-light mb-4">Tension de facteur de puissance : {{ facteur }}</p>
+      <p class="text-center text-light mb-4">{{ adresseMacTextView }}</p>
+      <p class="text-center text-light mb-4" style="color: white;">Date et Heure : {{ currentDateAndTime }}</p>
+    </div>
+  
+  
+
+<div style="display: flex; justify-content: center; align-items: center; margin-top: 100px;">
+  <div style="margin-right: 20px; width: 800px; height:700px; margin-left: 20px;">
+    <canvas baseChart
+            [datasets]="lineChartData"
+            [labels]="lineChartLabels"
+            [options]="lineChartOptions"
+            [legend]="lineChartLegend"
+            [type]="lineChartType"
+            [ngStyle]="chartStyles">
+    </canvas>
+  </div>
+</div>
+<div style="display: flex; flex-direction: column; color: rgb(228, 228, 235);">
+  <div>Total de l'énergie consommée:</div>
+  <div>{{lineChartData[1].data[lineChartData[1].data.length - 1]}} J</div>
+</div>
+</div>
+</div>
+<footer class="sticky-footer" style="background: linear-gradient(to right, #bbbed6, #308bda); margin-top: 50px;">
+  <div class="container my-auto">
+    <div class="text-center my-auto">
+      <span style="color: white;">© Votre site Web 2023</span>
+    </div>
+  </div>
+</footer>
+  
+  
+  

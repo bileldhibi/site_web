@@ -1,0 +1,61 @@
+<div class="card" style="text-align: center;">
+  <p-menubar [model]="items" class="p-menubar" >
+    <ng-template pTemplate="start">
+      <img src="../../assets/samrt.jpeg" height="50" class="mr-3" />
+    </ng-template>
+  </p-menubar>
+</div>
+
+<div class="container " style="background: linear-gradient(to right, #000428, #004e92); color: #e5dfdf; margin-top: 137px;">
+  <div class="row justify-content-center mb-3">
+    <div class="col-md-6">
+      <button type="button" class="btn btn-primary btn-block" (click)="toggleForm()" style="background: linear-gradient(to right, #a41635, #10865b); margin-top: 20px;">
+        <i class="fas fa-user-plus" style="margin-right: 5px;"></i>  Ajouter un travailleur
+      </button>
+    </div>
+  </div>
+  <div class="row justify-content-center" *ngIf="showForm">
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-header bg-primary text-white" >
+          <h4 class="card-title"><i class="fas fa-user-plus"></i>  Ajouter un travailleur</h4>
+        </div>
+        <div class="card-body" style="background: linear-gradient(to right, #000428, #004e92);">
+          <form (submit)="register()">
+            <div class="form-group">
+              <label for="nom"><i class="fas fa-user"></i> Nom</label>
+              <input type="text" class="form-control" id="nom" [(ngModel)]="nom" name="nom" required>
+            </div>
+            <div class="form-group">
+              <label for="prenom"><i class="fas fa-user"></i> Prénom</label>
+              <input type="text" class="form-control" id="prenom" [(ngModel)]="prenom" name="prenom" required>
+            </div>
+            <div class="form-group">
+              <label for="email"><i class="fas fa-envelope"></i> Email</label>
+              <input type="email" class="form-control" id="email" [(ngModel)]="email" name="email" required>
+            </div>
+            <div class="form-group">
+              <label for="cin"><i class="fas fa-id-card"></i> CIN</label>
+              <input type="text" class="form-control" id="cin" [(ngModel)]="cin" name="cin" required>
+            </div>
+            <div class="form-group">
+              <label for="telephone"><i class="fas fa-phone"></i> Téléphone</label>
+              <input type="text" class="form-control" id="telephone" [(ngModel)]="telephone" name="telephone" required>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block" style="background: linear-gradient(to right, #0fc15f, #ada00d);"><i class="fas fa-plus-circle" style="margin-right: 5px;"></i> Ajouter</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<footer class="sticky-footer" style="background: linear-gradient(to right, #000428, #004e92);margin-top: 130px;">
+  <div class="container my-auto">
+    <div class="text-center my-auto">
+      <span style="color: white;">© Votre site Web 2023</span>
+    </div>
+  </div>
+</footer>

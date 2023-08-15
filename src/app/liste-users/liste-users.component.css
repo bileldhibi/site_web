@@ -1,0 +1,38 @@
+.users-table {
+    background-color: #eee;
+    border-collapse: collapse;
+    font-family: Arial, sans-serif;
+    margin: 20px;
+  }
+  th, td {
+    border: 1px solid #999;
+    padding: 8px;
+    text-align: center;
+  }
+  th {
+    background-color: #555;
+    color: #fff;
+  }
+  button {
+    background-color: #f00;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    padding: 8px 16px;
+  }
+
+  .container {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+    padding: 50px 0;
+  }
+  .p-menubar {
+    background: linear-gradient(to right,  #3b89cd,#000428);
+    display: flex;
+    justify-content: center;
+  }
+  .p-menu {
+    display: flex;
+    justify-content: center;
+  }

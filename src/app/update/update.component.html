@@ -1,0 +1,83 @@
+<!-- machine.component.html -->
+<div class="container">
+    <!-- <h1>Machines</h1>
+  
+    <form (submit)="addMachine()">
+      <div class="form-group">
+        <label for="nomMachine">Nom de la machine</label>
+        <input type="text" class="form-control" id="nomMachine" [(ngModel)]="newMachine.nomMachine" name="nomMachine">
+      </div>
+      <div class="form-group">
+        <label for="status">Status</label>
+        <input type="text" class="form-control" id="status" [(ngModel)]="newMachine.status" name="status">
+      </div>
+      <div class="form-group">
+        <label for="description">Description</label>
+        <input type="text" class="form-control" id="description" [(ngModel)]="newMachine.description" name="description">
+      </div>
+      <button type="submit" class="btn btn-primary">Ajouter</button>
+    </form> -->
+  
+    <br>
+  
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Nom de la machine</th>
+          <th>Status</th>
+          <th>Description</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let machine of machines">
+          <td>{{ machine.nomMachine }}</td>
+          <td>{{ machine.status }}</td>
+          <td>{{ machine.description }}</td>
+          <td>
+            <button class="btn btn-sm btn-primary" (click)="selectedMachine = machine">Modifier</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  
+    <br>
+  
+    <!-- <form (submit)="updateMachine()" *ngIf="selectedMachine">
+      <h2>Modifier la machine</h2>
+      <div class="form-group">
+        <label for="nomMachineEdit">Nom de la machine</label>
+        <input type="text" class="form-control" id="nomMachineEdit" [(ngModel)]="selectedMachine.nomMachine" name="nomMachineEdit">
+      </div>
+      <div class="form-group">
+        <label for="statusEdit">Status</label>
+        <input type="text" class="form-control" id="statusEdit" [(ngModel)]="selectedMachine.status" name="statusEdit">
+      </div>
+      <div class="form-group">
+        <label for="descriptionEdit">Description</label>
+        <input type="text" class="form-control" id="descriptionEdit" [(ngModel)]="selectedMachine.description" name="descriptionEdit">
+      </div>
+      <button type="submit" class="btn btn-primary">Mettre à jour</button>
+    </form> -->
+ 
+
+  <form (submit)="updateMachine()" *ngIf="selectedMachine">
+    <h2>Modifier la machine</h2>
+    <div class="form-group">
+      <label for="nomMachine">Nom de la machine</label>
+      <input type="text" class="form-control" id="nomMachineEdit" [(ngModel)]="selectedMachine.nomMachine" name="nomMachineEdit">
+    </div>
+    <div class="form-group">
+      <label for="description">Description</label>
+      <textarea class="form-control" id="description" id="descriptionEdit" [(ngModel)]="selectedMachine.description" name="descriptionEdit"></textarea>
+    </div>
+    <div class="form-group">
+      <label for="status">Statut</label>
+      <select class="form-control"id="statusEdit" [(ngModel)]="selectedMachine.status" name="statusEdit">
+        <option value="En marche">En marche</option>
+        <option value="En panne">En panne</option>
+      </select>
+    </div>
+    <button type="submit" class="btn btn-primary">Mettre à jour</button>
+  </form>
+</div>
